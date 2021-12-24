@@ -4,21 +4,21 @@ const maxOfTwoNumbers = (val1, val2) => val1 > val2 ? val1 : val2;
 
 
 // Iteration #2: Find longest word
-const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot                        '];
+const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
 function findLongestWord(arr) {
   let longest = arr[0];
   if (arr.length === 0) return null;
   if (arr.length === 1 && typeof arr[0] === 'string') return arr[0];
+  
     for (let i = 1; i < arr.length; i++) {
-      //console.log(i);
-      if (longest.length === arr[i].length && longest === arr[i]) {
-        continue;
-      } else if (longest.length < arr[i].length) {
+      // console.log("longest.length => ", longest.length);
+      // console.log(" -> longest => ", longest);
+      // console.log("arr[i].length => ", arr[i].length);
+      // console.log(" -> arr[i] => ", arr[i]);
+      if (longest.length < arr[i].length) {
+        console.log("longest.length < arr[i].length");
          longest = arr[i];
-      } else {
-        console.log(`i = ${i} - longest = ${longest} - arr[i] = ${arr[i]}`)
-        console.log("Is it an Array ?");
       }
     }
 return longest;
