@@ -8,26 +8,22 @@ const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard',
 
 function findLongestWord(arr) {
   let longest = arr[0];
-  if (arr.length === 0) {
-    return null;
-  } else if (arr.length === 1 && typeof arr[0] === 'string') {
-    return arr[0];
-  } else if (arr.length > 1) {
+  if (arr.length === 0) return null;
+  if (arr.length === 1 && typeof arr[0] === 'string') return arr[0];
     for (let i = 1; i < arr.length; i++) {
       //console.log(i);
       if (longest.length === arr[i].length && longest === arr[i]) {
         continue;
       } else if (longest.length < arr[i].length) {
-        longest = arr[i];
+         longest = arr[i];
       } else {
         console.log(`i = ${i} - longest = ${longest} - arr[i] = ${arr[i]}`)
         console.log("Is it an Array ?");
       }
     }
-  }
-  return longest;
+return longest;
 }
-
+findLongestWord(words);
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
@@ -35,13 +31,8 @@ const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 function sumNumbers(arr) {
   // console.log(arr.length);
   let result = 0;
-  if (arr.length === 0) {
-    return result;
-  }
-
-  if (arr.length === 1) {
-    return result = result + arr[0];
-  }
+  if (arr.length === 0) return result;
+  if (arr.length === 1) return result = result + arr[0];
 
   for (let i = 0; i < arr.length; i++) {
     result = result + arr[i];
@@ -50,8 +41,7 @@ function sumNumbers(arr) {
   // console.log(result);
   return result;
 }
-
-
+// sumNumbers(numbers);
 
 // Iteration #3.1 Bonus:
 function sum() { }
@@ -63,17 +53,16 @@ function sum() { }
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
 function averageNumbers(arr) {
-  if (arr.length === 0) {
-    return null;
-  }
+  if (arr.length === 0) return null;
   let sum = sumNumbers(arr);
   let result = sum / arr.length;
   return result;
 }
-
+// averageNumbers(numbersAvg)
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
+
 function averageWordLength(arr) {
   if (arr.length === 0) {
     return null;
@@ -91,6 +80,7 @@ function averageWordLength(arr) {
   console.log(average);
   return average;
 }
+// averageWordLength(wordsArr)
 
 // Bonus - Iteration #4.1
 function avg() { }
@@ -118,7 +108,7 @@ function uniquifyArray(arr) {
   let filteredArray = arr.reduce(function (previous, current) {
     return previous.includes(current) ? previous : [...previous, current];
   }, []);
- 
+
   return filteredArray;
 }
 
@@ -130,12 +120,13 @@ function doesWordExist(haystack, needle) {
     return null;
   }
   for (let i = 0; i < haystack.length; i++) {
-    if (haystack[i] === needle)  {
+    if (haystack[i] === needle) {
       return true;
     }
   }
   return false;
 }
+doesWordExist(wordsFind, 'matter')
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -153,19 +144,20 @@ const wordsCount = [
 ];
 
 function howManyTimes(array, word) {
-  if (array.length === 0)  return 0;
+  if (array.length === 0) return 0;
 
   let count = 0;
   for (let i = 0; i < array.length; i++) {
-    if (array[i] === word)  {
+    if (array[i] === word) {
       count++;
     }
   }
   return count;
 }
-
+// howManyTimes(wordsCount, 'matter')
 
 // Iteration #8: Bonus
+
 const matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
@@ -189,10 +181,20 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() { }
-
-
-
+function greatestProduct(matrix) {
+  let result = 0;
+  //console.log(matrix.length);
+  for (let i = 0; i < matrix.length - 3; i++) {
+    for (let j = 0; j < matrix[i].length - 3; j++) {
+      let horizontalSum = matrix[i][j] * matrix[i + 1][j] * matrix[i + 2][j] * matrix[i + 3][j];
+      let verticalSum = matrix[i][j] * matrix[i][j +1] * matrix[i][j +2] * matrix[i][j +3];
+      if (result < horizontalSum) result = horizontalSum;
+      if (result < verticalSum) result = verticalSum;
+    }
+  }
+  return result;
+}
+console.log(greatestProduct(matrix));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
